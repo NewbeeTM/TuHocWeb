@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+        <title>Pj12</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+            ul{
+                list-style: none;
+            }
+            body{
+                color: #333;
+                font-size: 16px;
+                font-family: Helvetica, sans-serif;
+                line-height: 1.5;
+                background-color: #f8f8f8;
+            }
+
+            .clearfix{
+                zoom: 1;
+            }
+            .clearfix:after{
+                clear: both;
+                content: ".";
+                display: block;
+                height: 0;
+                line-height: 0;
+                visibility: hidden;
+            }
+
+            /* Layout */
+            .menu{ 
+                width: 1140px;
+                margin: 30px auto;
+                position: relative;
+            }
+            .menu #logo{
+                float: left;
+            }
+            .menu .navigation{
+                float: left;
+                padding: 15px 0 0 30px;
+            }
+            .menu .navigation li{
+                display: inline-block;
+                margin-right: 26px;
+            }
+            .menu .navigation li a{
+                color: #1f1f1f;
+                font-size: 14px;
+                text-decoration: none;
+                transition: 0.3s color;
+            }
+            .menu .navigation li.active a, .menu .navigation li a:hover{
+                color: #00aeef;
+            }
+
+            .menu .login{ 
+                position: absolute;
+                right: 0;
+                top: 5px;
+            }
+            .menu .login button{ 
+                background: none;
+                border: 2px solid #efefef;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 14px;
+                padding: 13px 12px 11px;
+                transition: 0.3s border-color;
+            }
+            .menu .login button:hover{ 
+                border-color: #00aeef;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="menu">
+            <div id="logo"><a href="#"><img src="./img/img_190x50.png" alt=""></a></div>
+            <nav class="navigation">
+                <ul>
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Domain</a></li>
+                    <li><a href="#">Hosting</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <p class="login"><button><i class="fas fa-lock">Customer Login</i></button></p>
+        </div>
+    </body>
+</html>

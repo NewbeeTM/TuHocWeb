@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+        <title>Pj17</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+            ul{
+                list-style: none;
+            }
+            body{
+                color: #666;
+                background-color: #f2f3f5;
+                font-size: 16px;
+                font-family: Helvetica, sans-serif;
+                line-height: 1.5;
+            }
+            .clearfix{
+                zoom: 1;
+            }
+            .clearfix:after{
+                clear: both;
+                content: ".";
+                display: block;
+                height: 0;
+                line-height: 0;
+                visibility: hidden;
+            }
+
+            /* Layout */
+            .about-us {
+                margin: 30px auto;
+                width: 1140px;
+            }
+            .about-us .image {
+                float: left;
+                width: 520px;
+            }
+            .about-us .detail {
+                float: right;
+                width: 560px;
+            }
+            .about-us .detail h2 {
+                color: #333;
+                font-size: 36px;
+                margin-bottom: 42px;
+                position: relative;
+            }
+
+            /* Line cho h2 */
+            .about-us .detail h2:after {
+                background-color: #516cfe;
+                display: block;
+                width: 100px;
+                height: 3px;
+                position: absolute;
+                left: 0;
+                bottom: -6px;
+                content: "";
+            }
+            .about-us .detail .info-text {
+                margin-bottom: 22px;
+            }
+            .about-us .detail h3 {
+                color: #333;
+                font-size: 22px;
+            }
+            .about-us .detail .choose-list {
+                padding: 14px 0 0 20px;
+            }
+            .about-us .detail .choose-list li {
+                float: left;
+                width: 50%;
+            }
+            .about-us .detail .choose-list li i {
+                color: #4fa2fb;
+                font-size: 10px;
+                padding-right: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="about-us clearfix">
+            <div class="image"><img width="520" height="380" src="./img/anh.jpg" alt=""></div>
+            <div class="detail">
+                <h2>ABOUT US</h2>
+                <p class="info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed ipsum erat. Donec feugiat ipsum ac risus auctor dignissim. Phasellus ante dolor, molestie vitae malesuada id, posuere non est. Phasellus vulputate pharetra tempor. Aliquam in tortor in arcu iaculis malesuada.</p>
+                <div>
+                    <h3>Why Choose Us?</h3>
+                    <ul class="choose-list"> 
+                        <li><i class="fas fa-check"></i> Lorem ipsum dolor</li>
+                        <li><i class="fas fa-check"></i> Nam sed ipsum erat</li>
+                        <li><i class="fas fa-check"></i> Consectetur adipiscing</li>
+                        <li><i class="fas fa-check"></i> Donec feugiat ipsum ac</li>
+                        <li><i class="fas fa-check"></i> Phasellus vulputate</li>
+                        <li><i class="fas fa-check"></i> Risus auctor dignissim</li>
+                        <li><i class="fas fa-check"></i> liquam in tortor in</li>
+                        <li><i class="fas fa-check"></i> Molestie vitae malesuada</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

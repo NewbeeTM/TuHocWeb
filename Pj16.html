@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+        <title>Pj16</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+            ul{
+                list-style: none;
+            }
+            body{
+                color: #6e6e6e;
+                background-color: #f2f3f5;
+                font-size: 16px;
+                font-family: Helvetica, sans-serif;
+                line-height: 1.8;
+            }
+            .clearfix{
+                zoom: 1;
+            }
+            .clearfix:after{
+                clear: both;
+                content: ".";
+                display: block;
+                height: 0;
+                line-height: 0;
+                visibility: hidden;
+            }
+
+            /* Layout */
+            /* Viết độc lập các thành phần form, để sử dụng lại */
+            input[type="text"], input[type="email"], textarea{
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                box-shadow: 0 1px 1px 0 #ddd inset;
+
+                /* Cần cho full-width */
+                box-sizing: border-box;
+                color: #6e6e6e;
+                padding-left: 20px;
+            }
+            input[type="text"], input[type="email"]{
+                height: 40px;
+            }
+            textarea{
+                padding-top: 10px;
+            }
+            button{
+                color: #fff;
+                background-color: #7dcefd;
+                cursor: pointer;
+                border: 1px solid #59a8d5;
+                border-radius: 4px;
+                min-width: 125px;
+                text-align: center;
+                padding: 11px 10px;
+                transition: 0.3s background-color;
+            }
+            button:hover{
+                background-color: #59a8d5;
+            }
+            .contact-form{
+                margin: 30px auto;
+                width: 770px;
+            }
+            .contact-form h2{
+                color: #383838;
+                font-size: 18px;
+                margin-bottom: 17px;
+            }
+            .contact-form p{
+                margin-bottom: 10px;
+            }
+            .contact-form input[type="email"]{
+                float: right;
+            }
+            .contact-form textarea{
+                height: 255px;
+            }
+            .half-size{
+                width: 370px;
+            }
+            .full-size{
+                width: 100%;
+            }
+            .contact-form .submit{
+                margin-top: -10px;
+            }
+            .contact-form .submit span{
+                float: right;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="contact-form">
+            <h2>Get in touch with us by filling contact form below</h2>
+            <form action="" method="">
+                <p><input type="text" name="name" placeholder="* Enter your full name" value="" class="half-size">
+                    <input type="email" name="email" placeholder="* Enter your email address" value="" class="half-size"></p>
+                <p><input type="text" name="subject" placeholder="* Enter your full name" value="" class="full-size"></p>
+                <p><textarea type="message" placeholder="* Your message here" cols="50" rows="10" class="full-size"></textarea></p>
+                <p class="submit"><button type="submit">Send message</button><span>* Please fill all require form field, thanks!</span></p>
+            </form>
+        </section>
+    </body>
+</html>
