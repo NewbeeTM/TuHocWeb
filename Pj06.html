@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>Pj06</title>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+            ul{
+                list-style: none;
+            }
+            body{
+                color: #383838;
+                font-size: 16px;
+                font-family: Helvetica, sans-serif;
+                line-height: 1.8;
+            }
+            .clearfix{
+                zoom: 1;
+            }
+            .clearfix:after{
+                clear: both;
+                content: ".";
+                display: block;
+                height: 0;
+                line-height: 0;
+                visibility: hidden;
+            }
+
+            /* Layout */
+            .examples{
+                margin: 30px auto;
+                width: 940px;
+            }
+            .examples h2{
+                font-size: 26px;
+                margin-bottom: 30px;
+                position: relative;
+                text-align: center;
+            }
+
+            /* phần background trắng che line bên dưới */
+            .examples h2 span{
+                background-color: #fff;
+                padding: 0 20px;
+                position: relative;
+                z-index: 1;
+            }
+
+            /* line của h2 */
+            .examples h2:after{
+                background-color: #e1e0e0;
+                content: "";
+                display: block;
+                height: 1px;
+                left: 0px;
+                position: absolute;
+                top: 20px;
+                width: 100%;
+            }
+
+            .examples .example-list li{
+                float: left;
+                margin-right: 26px;
+                width: 215px;   /*chiều rộng tấm hình*/
+            }
+            .examples .example-list li:nth-child(4n){
+                margin-right: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="examples">
+            <h2><span>Great examples built with bootslander</span></h2>
+            <ul class="example-list">
+                <li><a href="#"><img height="130" width="215"  src="./img/anh.jpg" alt=""></a></li>
+                <li><a href="#"><img height="130" width="215"  src="./img/anh.jpg" alt=""></a></li>
+                <li><a href="#"><img height="130" width="215"  src="./img/anh.jpg" alt=""></a></li>
+                <li><a href="#"><img height="130" width="215"  src="./img/anh.jpg" alt=""></a></li>
+            </ul>
+        </div>   
+    </body>
+</html>
