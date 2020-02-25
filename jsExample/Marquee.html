@@ -1,0 +1,71 @@
+<!-- Print Page Script
+    Use this script to have your users print your HTML page  -->
+
+<SCRIPT>
+    var scrtxt= "YOUR FIRST MESSAGE  GOES HERE"
+    var lentxt= scrtxt.length; 
+    var width= 100;
+    var countb= 8; // number of times t flash message //
+    var count= width+lentxt;
+    var nmsg=1; // number of messages
+    var message= new initArray(" YOUR SECOND MESSAGE  GOES HERE");
+    function initArray() {
+      this.length= initArray.arguments.length
+      for (var i= 0; i < this.length; i++)
+      this[i+1]= initArray.arguments[i]
+    }
+    function shift() {
+      var outtxt= ""
+      var  dif= count-lentxt;
+      if (dif>0) {
+        for (var i= 1; i<=dif; i++) {
+          outtxt= outtxt+" "}
+        outtxt= outtxt+scrtxt.substring(0,width-dif)
+      }
+      else {
+        outtxt= scrtxt.substring(-dif,lentxt)
+      }
+      document.scrform.scrtext.value= outtxt
+    }
+    function scroll() {
+      var n;
+      if ((countb>0) && (count-lentxt==0)) {count=0}
+      if (count-->0) {
+        shift();
+        setTimeout("scroll()",65)  // 50 display timer between letters //
+      }
+      else {
+        if (countb-->0) {
+          if ((countb % 2)==0) {
+            document.scrform.scrtext.value= " "
+            setTimeout("scroll()",250)  //150 Flash timer for start message//
+            }
+          else {
+            document.scrform.scrtext.value= scrtxt;
+            if (countb==1) {
+              setTimeout("scroll()",2000)} //3000 delay to hold start message after flashing//
+            else {
+              setTimeout("scroll()",250)} // delay flashing start message //
+          }
+        }
+        else {
+          now= new Date();
+          n= 1+Math.floor(nmsg*Math.abs(Math.sin(now.getTime())));
+          if (n>nmsg) { n= nmsg}
+          scrtxt= message[n];
+          lentxt= scrtxt.length;
+          count= lentxt+width+1;
+          setTimeout("scroll()",150)  //150  delay between showing 2nd mess over and over //
+        }
+      }
+    }
+</script>
+
+<body>
+    <center>
+        <FORM NAME="scrform" onSubmit="0">
+        <INPUT TYPE="text" NAME="scrtext" SIZE=68>
+        </FORM>
+        <SCRIPT> scroll();</SCRIPT>
+        </CENTER>
+</body>

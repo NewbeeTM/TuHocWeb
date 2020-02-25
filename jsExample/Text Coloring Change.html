@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        var msg = "NewbeeTM";
+        var colorTimer = null;
+
+        function toHex(n){
+            var hexChars = "0123456789ABCDEF";
+            if (n == 0) 
+                return n;
+            var j, k;
+            var temp = "";
+            while (n != 0){
+                j = n % 16;
+                n = (n - j)/16;
+                temp = hexChars.charAt(j) + temp;
+            }
+            return temp
+        }
+
+        function colorize() {
+            if (!document.getElementById) 
+                return;
+            for (i = 0; i < msg.length; i++) {
+                k = Math.round(Math.random()*16777215)
+                k = toHex(k);
+                while (k.length < 6) {
+                    k = k + '0';
+                }
+                document.getElementById('colorizer' + i).style.color = '#' + k;
+            }
+            colorTimer = window.setTimeout('colorize()', 230);
+        }
+
+
+    </script>
+
+    <style>
+        #text{
+            font-size:35px ; 
+            font-family: 'Times New Roman', Courier, monospace; 
+            letter-spacing:normal; 
+            font-weight:bold; 
+            font-style:normal; 
+            text-align:center; 
+            padding-top:15px;
+        }
+    </style>
+</head>
+<body onload="colorize();">
+    <div id="text">
+        <script>
+        for (var i=0; i<msg.length; i++){
+            document.write("<span id ='colorizer" + i + "'>" + msg.charAt(i) + "</span>");
+        }
+        </script>
+    </div>
+</body>
+</html>

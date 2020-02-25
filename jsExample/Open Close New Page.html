@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <form>
+        <input type="button" value="Close This Window" onClick="self.close()">
+    </form>
+
+    <form>
+        <input type="button" value="Open New Window" onClick="ANY_NAME=window.open('/index.htm', 'win1','toolbar=no,location=yes,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,width=600,height=500')">
+    </form>
+
+
+    Link: <a href="" onClick="ANY_NAME=window.open('/index.htm', 'win1','toolbar=no,location=yes,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,width=400,height=200'); return false;">
+        Open New Window</a> 
+    <form>
+        <input type=button value="Close New Window" onClick="ANY_NAME.close();">
+    </form>
+
+    Link: <a  href="" onClick="ANY_NAME.close(); return false;">Close New Window</a>
+    
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!-- Print Page Script
+    Use this script to have your users print your HTML page  -->
+
+<SCRIPT>
+    function scrl_param(){
+   this.bgn_ln = "Click Here to Start Scrolling :)  ...";
+   this.txt_ln = "Scrolling Text Effect...  "
+              + "You can click on this text to stop scrolling...  "
+              + "Dont forget , Dream come true ...  "
+              + "Belive in life... "
+              + "Your are the best  "
+                 ; 
+   this.end_ln = "All Done Scrolling";
+
+   this.speed = 100; 
+   this.box_lg = 70;
+   this.max = 10;
+   this.count = 0;
+   this.pos = 0;  
+   this.stop = 0;
+   this.box_ln = " ";
+   if( this.txt_ln.length < this.box_lg ){  
+      this.msg_ln = this.txt_ln; 
+      for( var i = 0 ; i < (this.box_lg - this.txt_ln.length) ; i++ ) 
+         this.msg_ln += " "; 
+    }   
+   else{ 
+     this.msg_ln = this.txt_ln; 
+     this.msg_ln += "          ";
+   }  
+
+  }
+
+ var scrl = new scrl_param();
+     
+ function scrlbox() 
+   { 
+  
+    if( scrl.pos > scrl.msg_ln.length ){
+      scrl.pos = 1;  
+      scrl.count++; 
+     } 
+    
+   scrl.box_ln = " "; 
+   scrl.box_ln += scrl.msg_ln.substring(scrl.pos,scrl.msg_ln.length);  
+   scrl.box_ln += scrl.msg_ln.substring(0,scrl.pos);  
+
+    if( scrl.stop == 0) {   
+        document.scrlform.scrlbox.focus(); 
+        if( scrl.count < scrl.max ) { 
+            scrl.pos++; /* advance line postion for next iteration */
+            document.scrlform.scrlbox.value = scrl.box_ln; /* display new line */
+            time3 = window.setTimeout('scrlbox()',scrl.speed); /* restart function */
+            } else /* maximum iteration been done */ 
+            { 
+            if ( scrl.end_ln.length > 2 ){ /* display end message if any */
+                time2 = window.setTimeout("document.scrlform.scrlbox.value ="+ 'scrl.end_ln',scrl.speed); 
+            } 
+            document.scrlform.scrlbox.blur(); /* remove focus, so user */
+            }                                  /* can easily restart */ 
+        } 
+    } 
+
+    /* restart function */
+    function startscrl() { 
+        scrl.stop = 0; 
+        scrl.pos = 0; 
+        scrlbox(); 
+    } 
+ 
+    /* stop function */ 
+    function stopscrl() { 
+        scrl.stop = 1; 
+    } 
+</script>
+
+<body>
+<center><h1>Scrolling Text Effect</h1></center>
+ 
+<script> 
+    document.write("<DIV ALIGN=CENTER><FORM NAME='scrlform'>"); 
+    document.write("<INPUT NAME='scrlbox' SIZE=" + scrl.box_lg + " onFocus='startscrl();' onBlur='stopscrl();' VALUE='" + scrl.bgn_ln + "'><BR>"); 
+    time1 = window.setTimeout('scrlbox()',8000); 
+    document.write("<P></FORM></DIV>"); 
+</script>
+
+</body>

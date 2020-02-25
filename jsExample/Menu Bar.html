@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+        #divBg{position:absolute; width:40%; top:0; left:0; visibility:hidden; height:85}
+        #divBgColor{position:absolute; top:0; left:0; width:103%; height:30; clip:rect(0,107%,30,0); background-color:#99FF00;}
+        DIV.clSub{position:absolute; top:20; left:0; width:120; visibility:hidden; font-family:arial,helvetica; font-weight:normal; font-size:12px; padding:10px; background-color:#33FF00; layer-background-color:#33FF00}
+        DIV.clTop{position:absolute; visibility:inherit; font-family:arial,helvetica; font-weight:bold; font-size:13px;left:100; top:20}
+        #divTop0{left:5%; top:5}
+        #divTop1{left:25%; top:5}
+        #divTop2{left:45%; top:5}
+        #divTop3{left:65%; top:5}
+        #divTop4{left:85%; top:5}
+    </style>
+
+    <script>
+        function checkBrowser(){
+            this.ver=navigator.appVersion
+            this.dom=document.getElementById?1:0
+            this.ie5=(this.ver.indexOf("MSIE 5")>-1 && this.dom)?1:0;
+            this.ie4=(document.all && !this.dom)?1:0;
+            this.ns5=(this.dom && parseInt(this.ver) >= 5) ?1:0;
+            this.ns4=(document.layers && !this.dom)?1:0;
+            this.bw=(this.ie5 || this.ie4 || this.ns4 || this.ns5)
+            return this
+        }
+        bw=new checkBrowser()
+
+        //Do you want it to move with the page if the user scroll the page?
+        var moveOnScroll=true
+        //How many menus do you have
+        numberOfMenus=5 
+        //Do you want to hide all the other submenus when you click a new?
+        var hideAll=true
+        //How much from top do you want the menu?
+        fromTop=85
+
+        /********************************************************************************
+        If you want to change the appearans on the text, or background or anything
+        do that in the style tag above, or in the table tag below.
+
+        The different event handling on the different browsers makes this a little
+        tricky. I had to make all divs absolute positioned to make it work in netscape.
+        So if you ad or remove menuitems please play with the % values of each divTop
+        in the stylesheet. I have not had all that much luck with % placement before
+        in netscape so if you encounter any errors et me know and I'll see what I can do.
+        ********************************************************************************/
+
+
+        /********************************************************************************
+        Object constructor
+        ********************************************************************************/
+        function makeMenuBar(obj,nest,vis){
+            nest=(!nest) ? '':'document.'+nest+'.'
+            this.css=bw.dom? document.getElementById(obj).style:bw.ie4?document.all[obj].style:bw.ns4?eval
+
+        (nest+"document.layers." +obj):0;		
+            this.hideIt=b_hideIt;	this.showIt=b_showIt					
+            if((bw.dom || bw.ie4) && vis) this.css.visibility='hidden'
+            this.evnt=bw.dom? document.getElementById(obj):bw.ie4?document.all[obj]:bw.ns4?eval(nest+"document.layers."+obj):0;		
+            this.go=0
+            this.height=bw.ns4?this.css.document.height:this.evnt.offsetHeight
+            this.top=b_gettop
+            this.obj = obj + "Object"; 	eval(this.obj + "=this")	
+        }
+        //Get's the top position.
+        function b_gettop(){
+            var gleft=(n) ? eval(this.css.top):eval(this.css.pixelTop);
+            return gleft;
+        }
+        //The functions for showing and hiding
+        function b_showIt(){
+            this.css.visibility="visible"
+        }
+        function b_hideIt(){
+            this.css.visibility="hidden"
+        }
+
+        /********************************************************************************
+        Checking if the page is scrolled, if it is move the menu after
+        ********************************************************************************/
+        function checkScrolled(){
+            if(!oMenu.go)oMenu.css.top=eval(scrolled)+fromTop
+            if(bw.ns4) setTimeout('checkScrolled()',30)
+        }
+
+        /********************************************************************************
+        Inits the page, makes the menu object, moves it to the right place, 
+        show it..
+        ********************************************************************************/
+        function menuBarInit(){
+            oSub=new Array()
+            oTop=new Array()
+            for(i=0;i<numberOfMenus;i++){
+                oTop[i]=new makeMenuBar('divTop'+i,'divBg')
+                oSub[i]=new makeMenuBar('divSub'+i,'divBg.document.divTop'+i,1)
+                oSub[i].evnt.onmouseout=evOut;
+            }
+            //Moving menuBar
+            oMenu=new makeMenuBar('divBg')
+            scrolled=bw.ns4?"window.pageYOffset":bw.ns5?"0":"document.body.scrollTop"
+            oMenu.css.top=eval(scrolled)+fromTop
+            oMenu.css.visibility='visible'
+            if(moveOnScroll) bw.dom || bw.ie4?window.onscroll=checkScrolled:checkScrolled();
+
+        }
+
+        /********************************************************************************
+        Shows and hides the submenus
+        ********************************************************************************/
+        function evOut(){
+            if(bw.ie4 || bw.dom)this.style.visibility='hidden'
+            else if(bw.ns4) this.visibility='hidden'
+        }
+        //Canceling event bubbling in ie
+        function ieShow(num){
+            if(bw.ie4 || bw.dom){
+                oSub[num].showIt()
+                window.event.cancelBubble=true
+            }
+        }
+        function extract(num){
+            if(hideAll){
+                for(i=0;i<oSub.length;i++){
+                    if(num!=i) oSub[i].hideIt()
+                }
+            }
+            oSub[num].showIt();
+        }
+        onload=menuBarInit;
+    </script>
+</head>
+<body>
+    <div id="divBg">
+        <div id="divBgColor"></div>
+        <div id="divTop0" class="clTop">
+            <a href="#" onmouseover="extract(0)">Link 1</a>
+            <div id="divSub0" class="clSub">
+                <a href="#" onmouseover="ieShow(0)" onmouseout="ieShow(0)">Sub Link 1</a>  <br>
+                <a href="#" onmouseover="ieShow(0)" onmouseout="ieShow(0)">Sub Link 2</a><br>
+                <a href="#" onmouseover="ieShow(0)" onmouseout="ieShow(0)">Sub Link 3</a><br><br>
+            </div>
+        </div>
+        <div id="divTop1" class="clTop">
+                <a href="#" onmouseover="extract(1)">Link 2</a>
+                <div id="divSub1" class="clSub">
+                    <a href="#" onmouseover="ieShow(1)" onmouseout="ieShow(1)">Sub Link 1</a>  <br>
+                    <a href="#" onmouseover="ieShow(1)" onmouseout="ieShow(1)">Sub Link 2</a><br><br>
+                </div>
+        </div>
+        <div id="divTop2" class="clTop">
+                <a href="#" onmouseover="extract(2)">Link 3</a>
+                <div id="divSub2" class="clSub">
+                    <a href="#" onmouseover="ieShow(2)" onmouseout="ieShow(2)">Sub Link 1</a>  <br>
+                    <a href="#" onmouseover="ieShow(2)" onmouseout="ieShow(2)">Sub Link 2</a><br><br>
+                </div>
+        </div>
+        <div id="divTop3" class="clTop">
+                <a href="#" onmouseover="extract(3)">Link 4</a>
+                <div id="divSub3" class="clSub">
+                    <a href="#" onmouseover="ieShow(3)" onmouseout="ieShow(3)">Sub Link 1</a>  <br>
+                    <a href="#" onmouseover="ieShow(3)" onmouseout="ieShow(3)">Sub Link 2</a><br>
+                    <a href="#" onmouseover="ieShow(3)" onmouseout="ieShow(3)">Sub Link 3</a><br><br>
+                </div>	
+        </div>
+        <div id="divTop4" class="clTop">
+                <a href="#" onmouseover="extract(4)">Link 5</a>
+                <div id="divSub4" class="clSub">
+                    <a href="#" onmouseover="ieShow(4)" onmouseout="ieShow(4)">Sub Link 1</a>  <br>
+                    <a href="#" onmouseover="ieShow(4)" onmouseout="ieShow(4)">Sub Link 2</a><br><br>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
